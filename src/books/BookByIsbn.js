@@ -23,6 +23,7 @@ function BookByIsbn(props) {
 
     const handleDelete = async () => {
         let isbn = props.bookByIsbn[0].isbn;
+        console.log(props.bookByIsbn[0].isbn);
 
         const requestOptions = {
             method: "DELETE",
@@ -62,14 +63,12 @@ function BookByIsbn(props) {
                             {props.bookByIsbn[0].authorList.map((author, index) => (
                                 <td key={index}>{author.firstName} {author.lastName}</td>
                             ))}
+                            <Button variant="danger" onClick={handleDelete}>
+                                Delete Book
+                            </Button>
                         </tr>
                         </tbody>
                     </Table>
-                    {!deleted && (
-                        <Button variant="danger" onClick={handleDelete}>
-                            Delete Book
-                        </Button>
-                    )}
                 </>
             ) : null}
         </>

@@ -60,14 +60,12 @@ function AuthorById(props) {
                             <td>
                                 {props.active[0].firstName} {props.active[0].lastName}
                             </td>
+                            <Button variant="danger" onClick={handleDelete}>
+                                Delete
+                            </Button>
                         </tr>
                         </tbody>
                     </Table>
-                    {!deleted && (
-                        <Button variant="danger" onClick={handleDelete}>
-                            Delete
-                        </Button>
-                    )}
                 </>
             ) : null}
         </>

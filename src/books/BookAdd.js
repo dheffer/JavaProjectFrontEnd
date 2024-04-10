@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 function BookAdd(props) {
     const [isbn, setIsbn] = useState("");
     const [title, setTitle] = useState("");
-    const [authorList, setAuthorList] = useState("");
+    const [author_id, setAuthorId] = useState("");
     const [editionNumber, setEditionNumber] = useState("");
     const [copyright, setCopyright] = useState("");
 
@@ -16,18 +16,15 @@ function BookAdd(props) {
             redirect: "follow"
         };
 
-        // Assuming authorList is comma-separated string of author names
-        const authors = authorList.split(",");
-
         const requestBody = {
             isbn,
             title,
-            authors,
+            author_id,
             editionNumber,
             copyright
         };
 
-        fetch("http://localhost:8080/api/v1/books/add", {
+        fetch(`http://localhost:8080/api/v1/books/add?isbn=${isbn}&title=${title}&edition_number=${editionNumber}&copyright=${copyright}&author_id=${author_id}`, {
             ...requestOptions,
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +36,7 @@ function BookAdd(props) {
                 // Reset form fields
                 setIsbn("");
                 setTitle("");
-                setAuthorList("");
+                setAuthorId("");
                 setEditionNumber("");
                 setCopyright("");
                 // Update parent component with new book data
@@ -73,12 +70,12 @@ function BookAdd(props) {
             </Form.Group>
 
             <Form.Group controlId="authorList">
-                <Form.Label>Authors (comma-separated)</Form.Label>
+                <Form.Label>Author ID</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder="Enter authors"
-                    value={authorList}
-                    onChange={(e) => setAuthorList(e.target.value)}
+                    value={author_id}
+                    onChange={(e) => setAuthorId(e.target.value)}
                     required
                 />
             </Form.Group>

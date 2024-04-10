@@ -56,7 +56,7 @@ function BookUpdate({ isbn: initialIsbn, title: initialTitle, authorList: initia
             </Form.Group>
 
             <Form.Group controlId="authorList">
-                <Form.Label>Authors (comma-separated)</Form.Label>
+                <Form.Label>Author ID</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder="Enter authors"
